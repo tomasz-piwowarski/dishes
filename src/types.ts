@@ -18,3 +18,7 @@ interface SandwichDishesData extends DishesBaseData {
 }
 
 export type DishesData = PizzaDishesData | SoupDishesData | SandwichDishesData;
+
+export interface DishesFormProps {
+  type: 'pizza' | 'soup' | 'sandwich';
+}
