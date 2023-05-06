@@ -9,13 +9,13 @@ function PizzaConditionalFields() {
         name="no_of_slices"
         component={RenderTextField}
         label="Number of slices"
-        validate={[validators.pizzaRequired]}
+        validate={[validators.pizzaRequired, validators.int]}
       />
       <Field
         name="diameter"
         component={RenderTextField}
         label="Diameter"
-        validate={[validators.pizzaRequired]}
+        validate={[validators.pizzaRequired, validators.number]}
       />
     </div>
   );
@@ -28,7 +28,13 @@ function SoupConditionalFields() {
         name="spiciness_scale"
         component={RenderTextField}
         label="Spiciness Scale"
-        validate={[validators.soupRequired]}
+        validate={[
+          validators.soupRequired,
+          validators.number,
+          validators.int,
+          validators.minValue1,
+          validators.maxValue10,
+        ]}
       />
     </div>
   );
@@ -41,7 +47,11 @@ function SandwichConditionalFields() {
         name="slices_of_bread"
         component={RenderTextField}
         label="Slices of bread"
-        validate={[validators.sandwichRequired]}
+        validate={[
+          validators.sandwichRequired,
+          validators.number,
+          validators.int,
+        ]}
       />
     </div>
   );

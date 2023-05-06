@@ -1,30 +1,22 @@
-import { TextField } from "@mui/material";
-import { WrappedFieldProps } from "redux-form"
+import { TextField } from '@mui/material';
+import { FieldInterface } from '@/types';
 
-interface FieldMeta {
-	touched: boolean;
-	invalid: boolean;
-	error: string;
-}
-
-interface TextFieldInterface {
-	label: string;
-	input: WrappedFieldProps;
-	meta: FieldMeta;
-	custom: {
-    [x: string]: any;
-	}
-}
-
-export default function RenderTextField({label, input, meta: {touched, invalid, error}, ...custom}: TextFieldInterface) {
-	return (
-		<TextField 
-			label={label}
-			placeholder={label}
-			error={touched && invalid}
-			helperText={touched && error}
-			{...input}
-			{...custom}
-		/>
-	)
+export default function RenderTextField({
+  label,
+  input,
+  meta: { touched, invalid, error },
+  ...custom
+}: FieldInterface) {
+  return (
+    <TextField
+      label={label}
+      InputLabelProps={{ shrink: true }}
+      placeholder={label}
+      error={touched && invalid}
+      helperText={touched && error}
+      sx={{ margin: 2 }}
+      {...input}
+      {...custom}
+    />
+  );
 }

@@ -3,37 +3,25 @@ import {
   reduxForm,
   InjectedFormProps,
   formValueSelector,
-  change,
 } from 'redux-form';
-import { connect, useDispatch } from 'react-redux';
+import { connect } from 'react-redux';
 import RenderTextField from './Fields/RenderTextField';
 import conditionalFields from './Fields/ConditionalFields';
 import { DishesData, DishesFormProps } from '@/types';
 import validators from '@/utils/validators';
+import useForm from '@/hooks/useForm';
 
-function Form(
-  props: InjectedFormProps<DishesData, DishesFormProps> & DishesFormProps
-) {
-  const dispatch = useDispatch();
-  const { handleSubmit, pristine, reset, submitting, type } = props;
-
-  const resetWhenTypeChanges = () => {
-    dispatch(change('DishesForm', 'no_of_slices', ''));
-    dispatch(change('DishesForm', 'slices_of_bread', ''));
-    dispatch(change('DishesForm', 'spiciness_scale', ''));
-    dispatch(change('DishesForm', 'diameter', ''));
-  };
+function Form({
+  handleSubmit,
+  pristine,
+  reset,
+  submitting,
+  type,
+}: InjectedFormProps<DishesData, DishesFormProps> & DishesFormProps) {
+  const { resetWhenTypeChanges } = useForm();
 
   return (
     <form onSubmit={handleSubmit}>
-      <div>
-        <Field
-          name="firstName"
-          component={RenderTextField}
-          label="First Name"
-          validate={[validators.required]}
-        />
-      </div>
       <div>
         <Field
           name="name"
@@ -48,6 +36,9 @@ function Form(
           component={RenderTextField}
           label="Preparation Time"
           validate={[validators.required]}
+          type="time"
+          value="00:00:00"
+          inputProps={{ step: 1 }}
         />
       </div>
       <div>
@@ -59,7 +50,7 @@ function Form(
           onChange={resetWhenTypeChanges}
         />
       </div>
-      {conditionalFields[type]};
+      {conditionalFields[type]}
       <div>
         <button type="submit" disabled={pristine || submitting}>
           Submit
