@@ -1,4 +1,4 @@
-import { type WrappedFieldProps } from 'redux-form';
+import { type WrappedFieldProps, type WrappedFieldMetaProps, type WrappedFieldInputProps } from 'redux-form';
 
 interface DishesBaseData {
 	name: string;
@@ -31,10 +31,14 @@ export interface FieldMeta {
 	error: string;
 }
 
+export interface SelectWrappedFieldProps extends WrappedFieldProps {
+	type: string; props: string; key:string;
+}
+
 export interface FieldInterface {
   label: string;
-  input: any;
-  meta: FieldMeta;
+  input: WrappedFieldInputProps;
+  meta: WrappedFieldMetaProps;
   custom: {
     [x: string]: any;
   };
