@@ -33,9 +33,14 @@ export interface FieldMeta {
 
 export interface FieldInterface {
   label: string;
-  input: WrappedFieldProps;
+  input: any;
   meta: FieldMeta;
   custom: {
     [x: string]: any;
   };
+}
+
+export interface SelectFieldInterface extends FieldInterface {
+	children: JSX.Element;
+	name: string;
 }

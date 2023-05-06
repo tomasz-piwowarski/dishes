@@ -1,15 +1,17 @@
-import Head from 'next/head'
-import { Inter } from 'next/font/google'
-import styles from '@/styles/Home.module.css'
-import Form from '@/components/Form'
-import { DishesData } from '@/types'
-
-const inter = Inter({ subsets: ['latin'] })
+import Head from 'next/head';
+import styles from '@/styles/Home.module.css';
+import Form from '@/components/Form';
+import { DishesData } from '@/types';
+import useForm from '@/hooks/useForm';
 
 export default function Home() {
-	const handleSubmit = (values: DishesData) => {
-		console.log(values);
-	}
+  const { sendDishes } = useForm();
+
+  const handleSubmit = async (values: DishesData) => {
+    const response = await sendDishes(values);
+
+    console.log(response);
+  };
 
   return (
     <>
@@ -19,9 +21,9 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={`${styles.main} ${inter.className}`}>
-        <Form onSubmit={handleSubmit}/>
+      <main className={`${styles.main}`}>
+        <Form onSubmit={handleSubmit} />
       </main>
     </>
-  )
+  );
 }

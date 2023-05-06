@@ -10,6 +10,8 @@ import conditionalFields from './Fields/ConditionalFields';
 import { DishesData, DishesFormProps } from '@/types';
 import validators from '@/utils/validators';
 import useForm from '@/hooks/useForm';
+import { Button } from '@mui/material';
+import RenderSelectField from './Fields/RenderSelectField';
 
 function Form({
   handleSubmit,
@@ -44,20 +46,25 @@ function Form({
       <div>
         <Field
           name="type"
-          component={RenderTextField}
+          component={RenderSelectField}
           label="Type"
           validate={[validators.required]}
           onChange={resetWhenTypeChanges}
-        />
+        >
+          <option value="" />
+          <option value={'pizza'}>Pizza</option>
+          <option value={'sandwich'}>Sandwich</option>
+          <option value={'soup'}>Soup</option>
+        </Field>
       </div>
       {conditionalFields[type]}
       <div>
-        <button type="submit" disabled={pristine || submitting}>
+        <Button type="submit" disabled={pristine || submitting}>
           Submit
-        </button>
-        <button type="button" disabled={pristine || submitting} onClick={reset}>
+        </Button>
+        <Button type="button" disabled={pristine || submitting} onClick={reset}>
           Clear Values
-        </button>
+        </Button>
       </div>
     </form>
   );
