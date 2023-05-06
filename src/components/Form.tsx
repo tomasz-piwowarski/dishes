@@ -39,7 +39,6 @@ function Form({
           label="Preparation Time"
           validate={[validators.required]}
           type="time"
-          value="00:00:00"
           inputProps={{ step: 1 }}
         />
       </div>

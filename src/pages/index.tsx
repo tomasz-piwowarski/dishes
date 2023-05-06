@@ -3,14 +3,18 @@ import styles from '@/styles/Home.module.css';
 import Form from '@/components/Form';
 import { DishesData } from '@/types';
 import useForm from '@/hooks/useForm';
+import { useState, useId } from 'react';
 
 export default function Home() {
+  const [dishes, setDishes] = useState<DishesData[]>([]);
+  const id = useId();
+
   const { sendDishes } = useForm();
 
   const handleSubmit = async (values: DishesData) => {
     const response = await sendDishes(values);
 
-    console.log(response);
+    setDishes((prev) => [...prev, response]);
   };
 
   return (
@@ -23,6 +27,11 @@ export default function Home() {
       </Head>
       <main className={`${styles.main}`}>
         <Form onSubmit={handleSubmit} />
+        <ul>
+          {dishes.map((dish) => (
+            <li key={id}>{dish.name}</li>
+          ))}
+        </ul>
       </main>
     </>
   );

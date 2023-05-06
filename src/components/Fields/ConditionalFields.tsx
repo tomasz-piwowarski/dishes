@@ -38,8 +38,8 @@ function SoupConditionalFields() {
         //   validators.soupRequired,
         //   validators.number,
         //   validators.int,
-        //   validators.minValue1,
-        //   validators.maxValue10,
+        //   (value: number) => validators.minValue(value, 1),
+        //   (value: number) => validators.maxValue(value, 10),
         // ]}
         validate={[validators.soupRequired]}
       />
