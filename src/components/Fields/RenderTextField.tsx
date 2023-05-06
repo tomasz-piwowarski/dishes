@@ -1,5 +1,17 @@
 import { TextField } from '@mui/material';
-import { FieldInterface } from '@/types';
+import {
+  type WrappedFieldMetaProps,
+  type WrappedFieldInputProps,
+} from 'redux-form';
+
+interface FieldInterface {
+  label: string;
+  input: WrappedFieldInputProps;
+  meta: WrappedFieldMetaProps;
+  custom: {
+    [x: string]: any;
+  };
+}
 
 export default function RenderTextField({
   label,

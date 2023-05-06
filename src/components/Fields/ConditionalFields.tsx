@@ -1,25 +1,24 @@
 import { Field } from 'redux-form';
 import RenderTextField from './RenderTextField';
 import validators from '@/utils/validators';
+import { FIELDS } from '@/utils/formConstants';
 
 function PizzaConditionalFields() {
   return (
     <>
       <div>
         <Field
-          name="no_of_slices"
+          name={FIELDS.no_of_slices.name}
           component={RenderTextField}
-          label="Number of slices"
-          // validate={[validators.pizzaRequired, validators.int]}
+          label={FIELDS.no_of_slices.label}
           validate={[validators.pizzaRequired]}
         />
       </div>
       <div>
         <Field
-          name="diameter"
+          name={FIELDS.diameter.name}
           component={RenderTextField}
-          label="Diameter"
-          // validate={[validators.pizzaRequired, validators.number]}
+          label={FIELDS.diameter.label}
           validate={[validators.pizzaRequired]}
         />
       </div>
@@ -31,16 +30,9 @@ function SoupConditionalFields() {
   return (
     <div>
       <Field
-        name="spiciness_scale"
+        name={FIELDS.spiciness_scale.name}
         component={RenderTextField}
-        label="Spiciness Scale"
-        // validate={[
-        //   validators.soupRequired,
-        //   validators.number,
-        //   validators.int,
-        //   (value: number) => validators.minValue(value, 1),
-        //   (value: number) => validators.maxValue(value, 10),
-        // ]}
+        label={FIELDS.spiciness_scale.label}
         validate={[validators.soupRequired]}
       />
     </div>
@@ -51,14 +43,9 @@ function SandwichConditionalFields() {
   return (
     <div>
       <Field
-        name="slices_of_bread"
+        name={FIELDS.slices_of_bread.name}
         component={RenderTextField}
-        label="Slices of bread"
-        // validate={[
-        //   validators.sandwichRequired,
-        //   validators.number,
-        //   validators.int,
-        // ]}
+        label={FIELDS.slices_of_bread.label}
         validate={[validators.sandwichRequired]}
       />
     </div>

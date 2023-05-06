@@ -1,28 +1,27 @@
 import { SubmissionError, change } from 'redux-form';
 import { useDispatch } from 'react-redux';
 import { DishesData } from '@/types';
+import { FORM_NAME, CONDITIONAL_FIELDS } from '@/utils/formConstants';
+
+const DISHES_URL = process.env.NEXT_PUBLIC_DISHES_URL;
 
 export default function useForm() {
   const dispatch = useDispatch();
 
   const resetWhenTypeChanges = () => {
-    dispatch(change('DishesForm', 'no_of_slices', ''));
-    dispatch(change('DishesForm', 'slices_of_bread', ''));
-    dispatch(change('DishesForm', 'spiciness_scale', ''));
-    dispatch(change('DishesForm', 'diameter', ''));
+    CONDITIONAL_FIELDS.forEach((conditional_field) => {
+      dispatch(change(FORM_NAME, conditional_field, ''));
+    });
   };
 
   const sendDishes = async (data: DishesData) => {
-    const response = await fetch(
-      'https://umzzcc503l.execute-api.us-west-2.amazonaws.com/dishes/',
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      }
-    );
+    const response = await fetch(DISHES_URL as string, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
 
     const jsonData = await response.json();
 

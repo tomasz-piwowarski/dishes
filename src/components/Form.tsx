@@ -12,6 +12,7 @@ import validators from '@/utils/validators';
 import useForm from '@/hooks/useForm';
 import { Button } from '@mui/material';
 import RenderSelectField from './Fields/RenderSelectField';
+import { FORM_NAME, FIELDS } from '@/utils/formConstants';
 
 function Form({
   handleSubmit,
@@ -26,34 +27,36 @@ function Form({
     <form onSubmit={handleSubmit}>
       <div>
         <Field
-          name="name"
+          name={FIELDS.name.name}
           component={RenderTextField}
-          label="Name"
+          label={FIELDS.name.label}
           validate={[validators.required]}
         />
       </div>
       <div>
         <Field
-          name="preparation_time"
+          name={FIELDS.preparation_time.name}
           component={RenderTextField}
-          label="Preparation Time"
+          label={FIELDS.preparation_time.label}
           validate={[validators.required]}
-          type="time"
+          type={FIELDS.preparation_time.type}
           inputProps={{ step: 1 }}
         />
       </div>
       <div>
         <Field
-          name="type"
+          name={FIELDS.type.name}
           component={RenderSelectField}
-          label="Type"
+          label={FIELDS.type.label}
           validate={[validators.required]}
           onChange={resetWhenTypeChanges}
         >
           <option value="" />
-          <option value={'pizza'}>Pizza</option>
-          <option value={'sandwich'}>Sandwich</option>
-          <option value={'soup'}>Soup</option>
+          {FIELDS.type.options.map((option) => (
+            <option key={option.value} value={option.value}>
+              {option.label}
+            </option>
+          ))}
         </Field>
       </div>
       {conditionalFields[type]}
@@ -70,10 +73,10 @@ function Form({
 }
 
 const DishesForm = reduxForm<DishesData, DishesFormProps>({
-  form: 'DishesForm',
+  form: FORM_NAME,
 })(Form);
 
-const selector = formValueSelector('DishesForm');
+const selector = formValueSelector(FORM_NAME);
 
 export default connect((state: DishesData) => {
   const type = selector(state, 'type');
