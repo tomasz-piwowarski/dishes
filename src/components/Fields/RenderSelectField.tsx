@@ -1,19 +1,19 @@
 import { Select, InputLabel, FormControl, FormHelperText } from '@mui/material';
-import { SelectFieldInterface } from '@/types';
+import {
+  type WrappedFieldMetaProps,
+  type WrappedFieldInputProps,
+} from 'redux-form';
 
-const renderFromHelper = ({
-  touched,
-  error,
-}: {
-  touched: boolean;
-  error: string;
-}) => {
-  if (!(touched && error)) {
-    return;
-  } else {
-    return <FormHelperText>{touched && error}</FormHelperText>;
-  }
-};
+interface SelectFieldInterface {
+  label: string;
+  input: WrappedFieldInputProps;
+  meta: WrappedFieldMetaProps;
+  custom: {
+    [x: string]: any;
+  };
+  children: JSX.Element;
+  name: string;
+}
 
 export default function RenderSelectField({
   label,
@@ -39,7 +39,7 @@ export default function RenderSelectField({
       >
         {children}
       </Select>
-      {renderFromHelper({ touched, error })}
+      {touched && invalid && <FormHelperText>{error}</FormHelperText>}
     </FormControl>
   );
 }

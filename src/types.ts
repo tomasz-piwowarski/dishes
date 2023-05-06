@@ -1,9 +1,9 @@
-import { type WrappedFieldProps, type WrappedFieldMetaProps, type WrappedFieldInputProps } from 'redux-form';
+type DishType = "pizza" | "soup" | "sandwich"
 
 interface DishesBaseData {
 	name: string;
 	preparation_time: string;
-	type: "pizza" | "soup" | "sandwich";	
+	type: DishType;	
 }
 
 interface PizzaDishesData extends DishesBaseData {
@@ -22,29 +22,5 @@ interface SandwichDishesData extends DishesBaseData {
 export type DishesData = PizzaDishesData | SoupDishesData | SandwichDishesData;
 
 export interface DishesFormProps {
-  type: 'pizza' | 'soup' | 'sandwich';
-}
-
-export interface FieldMeta {
-	touched: boolean;
-	invalid: boolean;
-	error: string;
-}
-
-export interface SelectWrappedFieldProps extends WrappedFieldProps {
-	type: string; props: string; key:string;
-}
-
-export interface FieldInterface {
-  label: string;
-  input: WrappedFieldInputProps;
-  meta: WrappedFieldMetaProps;
-  custom: {
-    [x: string]: any;
-  };
-}
-
-export interface SelectFieldInterface extends FieldInterface {
-	children: JSX.Element;
-	name: string;
+  type: DishType;
 }
