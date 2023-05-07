@@ -1,4 +1,5 @@
 import { TextField } from '@mui/material';
+import { ChangeEvent } from 'react';
 import {
   type WrappedFieldMetaProps,
   type WrappedFieldInputProps,
@@ -21,16 +22,18 @@ export default function RenderTimeField({
 }: FieldInterface) {
   const { onChange } = input;
 
-  const handleChange = (event: any) => {
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const inputText = event.target.value;
 
-    if (!inputText.length) return;
+    if (!inputText.length) return onChange('');
 
     const cleanedValue = inputText.replace(/\D/g, '');
 
-    const formattedValue = cleanedValue.match(/.{1,2}/g).join(':');
+    const formattedValue = cleanedValue.match(/.{1,2}/g);
 
-    onChange(formattedValue);
+    if (!formattedValue) return;
+
+    onChange(formattedValue.join(':'));
   };
 
   return (
