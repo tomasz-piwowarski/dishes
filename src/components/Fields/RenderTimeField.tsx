@@ -28,7 +28,6 @@ export default function RenderTimeField({
 
     const cleanedValue = inputText.replace(/\D/g, '');
 
-    // Split into groups of two and join with colons
     const formattedValue = cleanedValue.match(/.{1,2}/g).join(':');
 
     onChange(formattedValue);
