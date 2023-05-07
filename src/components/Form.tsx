@@ -46,7 +46,6 @@ function Form({
           label={FIELDS.preparation_time.label}
           validate={[validators.required]}
           inputProps={{ pattern: '^([01]\\d|2[0-3]):([0-5]\\d):([0-5]\\d)$' }}
-          defaultValue="00:00:00"
           fullWidth
           sx={{ mb: 2 }}
           placeholder="hh:mm:ss"

@@ -4,7 +4,7 @@ Live preview: https://dishes-ashy.vercel.app/
 
 ## To run
 
-Run the development server:
+Clone repository, install packages, fill .env file and run the development server:
 
 ```bash
 npm install
