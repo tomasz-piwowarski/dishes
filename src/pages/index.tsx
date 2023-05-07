@@ -47,7 +47,10 @@ export default function Home() {
               width: { md: '25%' },
               px: 2,
               py: 4,
+              boxShadow: 2,
               backgroundColor: 'white',
+              borderBottomLeftRadius: '3%',
+              borderBottomRightRadius: '3%',
             }}
           >
             <Form onSubmit={handleSubmit} />

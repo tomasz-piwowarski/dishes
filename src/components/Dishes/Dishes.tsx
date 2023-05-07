@@ -13,10 +13,14 @@ export default function Dishes({ dishes }: { dishes: DishesData[] }) {
         pb: 2,
         mx: 'auto',
       }}
-      spacing={2}
     >
       {dishes.map((dish) => (
-        <Grid md={3} key={dish.name + dish.type + dish.preparation_time} item>
+        <Grid
+          md={3}
+          sx={{ p: 1 }}
+          key={dish.name + dish.type + dish.preparation_time}
+          item
+        >
           <Dish {...dish} />
         </Grid>
       ))}
