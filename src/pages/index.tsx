@@ -4,7 +4,8 @@ import { DishesData } from '@/types';
 import useForm from '@/hooks/useForm';
 import { useState } from 'react';
 import Dishes from '@/components/Dishes/Dishes';
-import { Box, AppBar, Toolbar, IconButton, Typography } from '@mui/material';
+import { Box } from '@mui/material';
+import AppBar from '@/components/AppBar';
 
 export default function Home() {
   const [dishes, setDishes] = useState<DishesData[]>([]);
@@ -28,13 +29,7 @@ export default function Home() {
       <Box
         sx={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}
       >
-        <AppBar position="static">
-          <Toolbar>
-            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              Dishes
-            </Typography>
-          </Toolbar>
-        </AppBar>
+        <AppBar />
         <Box
           sx={{
             display: 'flex',

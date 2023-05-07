@@ -71,11 +71,24 @@ function Form({
         </Field>
       </Box>
       {conditionalFields[type]}
-      <Box>
-        <Button type="submit" disabled={pristine || submitting}>
+      <Box sx={{ display: 'flex', flexDirection: 'row' }}>
+        <Button
+          variant="contained"
+          type="submit"
+          disabled={pristine || submitting}
+          fullWidth
+          sx={{ mr: 1 }}
+        >
           Submit
         </Button>
-        <Button type="button" disabled={pristine || submitting} onClick={reset}>
+        <Button
+          variant="outlined"
+          type="button"
+          disabled={pristine || submitting}
+          onClick={reset}
+          fullWidth
+          sx={{ ml: 1 }}
+        >
           Clear Values
         </Button>
       </Box>
