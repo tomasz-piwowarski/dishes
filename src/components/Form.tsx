@@ -13,6 +13,7 @@ import useForm from '@/hooks/useForm';
 import { Button, Box } from '@mui/material';
 import RenderSelectField from './Fields/RenderSelectField';
 import { FORM_NAME, FIELDS } from '@/utils/formConstants';
+import RenderTimeField from './Fields/RenderTimeField';
 
 interface DishesFormProps {
   type: DishType;
@@ -42,7 +43,7 @@ function Form({
       <Box>
         <Field
           name={FIELDS.preparation_time.name}
-          component={RenderTextField}
+          component={RenderTimeField}
           label={FIELDS.preparation_time.label}
           validate={[validators.required]}
           inputProps={{ pattern: '^([01]\\d|2[0-3]):([0-5]\\d):([0-5]\\d)$' }}
