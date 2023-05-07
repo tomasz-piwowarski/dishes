@@ -1,18 +1,22 @@
 import {
   Field,
   reduxForm,
-  InjectedFormProps,
+  type InjectedFormProps,
   formValueSelector,
 } from 'redux-form';
 import { connect } from 'react-redux';
 import RenderTextField from './Fields/RenderTextField';
 import conditionalFields from './Fields/ConditionalFields';
-import { DishesData, DishesFormProps } from '@/types';
+import { type DishesData, type DishType } from '@/types';
 import validators from '@/utils/validators';
 import useForm from '@/hooks/useForm';
 import { Button } from '@mui/material';
 import RenderSelectField from './Fields/RenderSelectField';
 import { FORM_NAME, FIELDS } from '@/utils/formConstants';
+
+interface DishesFormProps {
+  type: DishType;
+}
 
 function Form({
   handleSubmit,
@@ -79,7 +83,7 @@ const DishesForm = reduxForm<DishesData, DishesFormProps>({
 const selector = formValueSelector(FORM_NAME);
 
 export default connect((state: DishesData) => {
-  const type = selector(state, 'type');
+  const type = selector(state, FIELDS.type.name);
   return {
     type,
   };

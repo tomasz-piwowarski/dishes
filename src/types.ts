@@ -1,26 +1,22 @@
-type DishType = "pizza" | "soup" | "sandwich"
+export type DishType = "pizza" | "soup" | "sandwich"
 
 interface DishesBaseData {
 	name: string;
+	type: DishType;
 	preparation_time: string;
-	type: DishType;	
 }
 
-interface PizzaDishesData extends DishesBaseData {
+export interface PizzaDishesData extends DishesBaseData {
 	no_of_slices: number;
 	diameter: number;
 }
 
-interface SoupDishesData extends DishesBaseData {
+export interface SoupDishesData extends DishesBaseData {
 	spiciness_scale: number;
 }
 
-interface SandwichDishesData extends DishesBaseData {
+export interface SandwichDishesData extends DishesBaseData {
 	slices_of_bread: number;
 }
 
 export type DishesData = PizzaDishesData | SoupDishesData | SandwichDishesData;
-
-export interface DishesFormProps {
-  type: DishType;
-}

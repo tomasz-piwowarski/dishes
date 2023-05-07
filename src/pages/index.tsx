@@ -1,13 +1,12 @@
 import Head from 'next/head';
-import styles from '@/styles/Home.module.css';
 import Form from '@/components/Form';
 import { DishesData } from '@/types';
 import useForm from '@/hooks/useForm';
-import { useState, useId } from 'react';
+import { useState } from 'react';
+import Dishes from '@/components/Dishes/Dishes';
 
 export default function Home() {
   const [dishes, setDishes] = useState<DishesData[]>([]);
-  const id = useId();
 
   const { sendDishes } = useForm();
 
@@ -25,13 +24,9 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={`${styles.main}`}>
+      <main>
         <Form onSubmit={handleSubmit} />
-        <ul>
-          {dishes.map((dish) => (
-            <li key={id}>{dish.name}</li>
-          ))}
-        </ul>
+        <Dishes dishes={dishes} />
       </main>
     </>
   );
