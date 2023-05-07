@@ -11,6 +11,9 @@ interface SelectFieldInterface {
   custom: {
     [x: string]: any;
   };
+  sx: {
+    [x: string]: any;
+  };
   children: JSX.Element;
   name: string;
 }
@@ -21,10 +24,11 @@ export default function RenderSelectField({
   meta: { touched, invalid, error },
   children,
   name,
+  sx,
   ...custom
 }: SelectFieldInterface) {
   return (
-    <FormControl error={touched && invalid} sx={{ margin: 2 }}>
+    <FormControl error={touched && invalid} fullWidth sx={sx}>
       <InputLabel id={`select-${name}-id`}>Type</InputLabel>
       <Select
         labelId={`select-${name}-id`}

@@ -22,7 +22,7 @@ export default function useForm() {
       },
       body: JSON.stringify(data),
     });
-
+    console.log(response);
     const jsonData = await response.json();
 
     if (response.status === 400) {

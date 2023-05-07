@@ -1,5 +1,5 @@
 import { type DishesData } from '@/types';
-import { Box, Typography } from '@mui/material';
+import { Box, Typography, Divider } from '@mui/material';
 
 interface PizzaDishProps {
   no_of_slices: number;
@@ -53,9 +53,22 @@ export default function Dish(props: DishesData) {
   };
 
   return (
-    <Box>
-      <Typography variant="h5">Name: {props.name}</Typography>
-      <Typography variant="h6">Type: {props.type}</Typography>
+    <Box
+      sx={{
+        borderRadius: '5%',
+        backgroundColor: 'white',
+        p: 2,
+        boxShadow: 2,
+        height: '100%',
+      }}
+    >
+      <Typography sx={{ wordWrap: 'break-word' }} variant="h5">
+        {props.name}
+      </Typography>
+      <Divider sx={{ mb: 1 }} />
+      <Typography sx={{ textTransform: 'capitalize' }} variant="h6">
+        Type: {props.type}
+      </Typography>
       <Typography>Preparation time: {props.preparation_time}</Typography>
       {dishes[props.type]}
     </Box>

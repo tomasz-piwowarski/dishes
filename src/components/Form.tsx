@@ -10,7 +10,7 @@ import conditionalFields from './Fields/ConditionalFields';
 import { type DishesData, type DishType } from '@/types';
 import validators from '@/utils/validators';
 import useForm from '@/hooks/useForm';
-import { Button } from '@mui/material';
+import { Button, Box } from '@mui/material';
 import RenderSelectField from './Fields/RenderSelectField';
 import { FORM_NAME, FIELDS } from '@/utils/formConstants';
 
@@ -29,31 +29,38 @@ function Form({
 
   return (
     <form onSubmit={handleSubmit}>
-      <div>
+      <Box>
         <Field
           name={FIELDS.name.name}
           component={RenderTextField}
           label={FIELDS.name.label}
           validate={[validators.required]}
+          fullWidth
+          sx={{ mb: 2 }}
         />
-      </div>
-      <div>
+      </Box>
+      <Box>
         <Field
           name={FIELDS.preparation_time.name}
           component={RenderTextField}
           label={FIELDS.preparation_time.label}
           validate={[validators.required]}
-          type={FIELDS.preparation_time.type}
-          inputProps={{ step: 1 }}
+          inputProps={{ pattern: '^([01]\\d|2[0-3]):([0-5]\\d):([0-5]\\d)$' }}
+          defaultValue="00:00:00"
+          fullWidth
+          sx={{ mb: 2 }}
+          placeholder="hh:mm:ss"
         />
-      </div>
-      <div>
+      </Box>
+      <Box>
         <Field
           name={FIELDS.type.name}
           component={RenderSelectField}
           label={FIELDS.type.label}
           validate={[validators.required]}
           onChange={resetWhenTypeChanges}
+          fullWidth
+          sx={{ mb: 2 }}
         >
           <option value="" />
           {FIELDS.type.options.map((option) => (
@@ -62,16 +69,16 @@ function Form({
             </option>
           ))}
         </Field>
-      </div>
+      </Box>
       {conditionalFields[type]}
-      <div>
+      <Box>
         <Button type="submit" disabled={pristine || submitting}>
           Submit
         </Button>
         <Button type="button" disabled={pristine || submitting} onClick={reset}>
           Clear Values
         </Button>
-      </div>
+      </Box>
     </form>
   );
 }

@@ -4,6 +4,7 @@ import { DishesData } from '@/types';
 import useForm from '@/hooks/useForm';
 import { useState } from 'react';
 import Dishes from '@/components/Dishes/Dishes';
+import { Box, AppBar, Toolbar, IconButton, Typography } from '@mui/material';
 
 export default function Home() {
   const [dishes, setDishes] = useState<DishesData[]>([]);
@@ -24,10 +25,43 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main>
-        <Form onSubmit={handleSubmit} />
-        <Dishes dishes={dishes} />
-      </main>
+      <Box
+        sx={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}
+      >
+        <AppBar position="static">
+          <Toolbar>
+            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+              Dishes
+            </Typography>
+          </Toolbar>
+        </AppBar>
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: { xs: 'column', md: 'row' },
+            flex: 1,
+          }}
+        >
+          <Box
+            sx={{
+              width: { md: '25%' },
+              px: 2,
+              py: 4,
+              backgroundColor: 'white',
+            }}
+          >
+            <Form onSubmit={handleSubmit} />
+          </Box>
+          <Box
+            sx={{
+              p: 4,
+              width: { md: '75%' },
+            }}
+          >
+            <Dishes dishes={dishes} />
+          </Box>
+        </Box>
+      </Box>
     </>
   );
 }

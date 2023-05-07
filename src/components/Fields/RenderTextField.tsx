@@ -26,7 +26,6 @@ export default function RenderTextField({
       placeholder={label}
       error={touched && invalid}
       helperText={touched && error}
-      sx={{ margin: 2 }}
       {...input}
       {...custom}
     />
