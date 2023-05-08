@@ -1,11 +1,13 @@
 import Head from 'next/head';
-import Form from '@/components/Form';
+import Form from '@/components/Form/Form';
 import { DishesData } from '@/types';
 import useForm from '@/hooks/useForm';
 import { useState } from 'react';
 import Dishes from '@/components/Dishes/Dishes';
 import { Box } from '@mui/material';
 import AppBar from '@/components/AppBar';
+import FormContainer from '@/components/Form/FormContainer';
+import DishesContainer from '@/components/Dishes/DishesContainer';
 
 export default function Home() {
   const [dishes, setDishes] = useState<DishesData[]>([]);
@@ -37,27 +39,12 @@ export default function Home() {
             flex: 1,
           }}
         >
-          <Box
-            sx={{
-              width: { md: '25%' },
-              px: 2,
-              py: 4,
-              boxShadow: 2,
-              backgroundColor: 'white',
-              borderBottomLeftRadius: '3%',
-              borderBottomRightRadius: '3%',
-            }}
-          >
+          <FormContainer>
             <Form onSubmit={handleSubmit} />
-          </Box>
-          <Box
-            sx={{
-              p: 4,
-              width: { md: '75%' },
-            }}
-          >
+          </FormContainer>
+          <DishesContainer>
             <Dishes dishes={dishes} />
-          </Box>
+          </DishesContainer>
         </Box>
       </Box>
     </>

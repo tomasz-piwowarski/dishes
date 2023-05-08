@@ -13,3 +13,5 @@ npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+After submitting the form with data, the server will respond with data or validation errors, which will be displayed to the user.

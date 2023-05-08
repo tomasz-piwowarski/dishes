@@ -20,11 +20,7 @@ interface SandwichDishesProps {
 }
 
 export function SandwichDish({ slices_of_bread }: SandwichDishesProps) {
-  return (
-    <>
-      <Typography>Slices of bread: {slices_of_bread}</Typography>
-    </>
-  );
+  return <Typography>Slices of bread: {slices_of_bread}</Typography>;
 }
 
 interface SoupDishesProps {
@@ -32,11 +28,7 @@ interface SoupDishesProps {
 }
 
 export function SoupDish({ spiciness_scale }: SoupDishesProps) {
-  return (
-    <>
-      <Typography>Spiciness scale: {spiciness_scale}</Typography>
-    </>
-  );
+  return <Typography>Spiciness scale: {spiciness_scale}</Typography>;
 }
 
 export default function Dish(props: DishesData) {

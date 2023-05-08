@@ -1,17 +1,15 @@
-import { TextField } from '@mui/material';
+import { TextField, TextFieldProps } from '@mui/material';
 import { ChangeEvent } from 'react';
 import {
   type WrappedFieldMetaProps,
   type WrappedFieldInputProps,
 } from 'redux-form';
 
-interface FieldInterface {
+interface Props {
   label: string;
   input: WrappedFieldInputProps;
   meta: WrappedFieldMetaProps;
-  custom: {
-    [x: string]: any;
-  };
+  custom: TextFieldProps;
 }
 
 export default function RenderTimeField({
@@ -19,7 +17,7 @@ export default function RenderTimeField({
   input,
   meta: { touched, invalid, error },
   ...custom
-}: FieldInterface) {
+}: Props) {
   const { onChange } = input;
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {

@@ -5,15 +5,15 @@ import {
   formValueSelector,
 } from 'redux-form';
 import { connect } from 'react-redux';
-import RenderTextField from './Fields/RenderTextField';
-import conditionalFields from './Fields/ConditionalFields';
+import RenderTextField from './RenderTextField';
+import conditionalFields from './ConditionalFields';
 import { type DishesData, type DishType } from '@/types';
 import validators from '@/utils/validators';
 import useForm from '@/hooks/useForm';
 import { Button, Box } from '@mui/material';
-import RenderSelectField from './Fields/RenderSelectField';
+import RenderSelectField from './RenderSelectField';
 import { FORM_NAME, FIELDS } from '@/utils/formConstants';
-import RenderTimeField from './Fields/RenderTimeField';
+import RenderTimeField from './RenderTimeField';
 
 interface DishesFormProps {
   type: DishType;

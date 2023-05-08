@@ -1,19 +1,22 @@
-import { Select, InputLabel, FormControl, FormHelperText } from '@mui/material';
+import {
+  Select,
+  InputLabel,
+  FormControl,
+  FormHelperText,
+  SxProps,
+  TextFieldProps,
+} from '@mui/material';
 import {
   type WrappedFieldMetaProps,
   type WrappedFieldInputProps,
 } from 'redux-form';
 
-interface SelectFieldInterface {
+interface Props {
   label: string;
   input: WrappedFieldInputProps;
   meta: WrappedFieldMetaProps;
-  custom: {
-    [x: string]: any;
-  };
-  sx: {
-    [x: string]: any;
-  };
+  custom: TextFieldProps;
+  sx: SxProps;
   children: JSX.Element;
   name: string;
 }
@@ -26,7 +29,7 @@ export default function RenderSelectField({
   name,
   sx,
   ...custom
-}: SelectFieldInterface) {
+}: Props) {
   return (
     <FormControl error={touched && invalid} fullWidth sx={sx}>
       <InputLabel id={`select-${name}-id`}>Type</InputLabel>

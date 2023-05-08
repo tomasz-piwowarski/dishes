@@ -1,0 +1,1 @@
+export const DISHES_URL = process.env.NEXT_PUBLIC_DISHES_URL as string;
